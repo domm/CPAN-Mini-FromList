@@ -3,12 +3,14 @@ package CPAN::Mini::FromList;
 use warnings;
 use strict;
 
+our $VERSION = '0.03';
+# ABSTRACT: create a minimal CPAN mirror from a list of modules you specify
+
 use CPAN::Mini;
 use Data::Dumper;
 use File::Spec::Functions;
 use base qw(CPAN::Mini);
 
-our $VERSION = '0.02';
 
 =head1 NAME
 

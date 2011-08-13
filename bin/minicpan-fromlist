@@ -3,6 +3,9 @@ use strict;
 use warnings;
 use File::Find::Rule;
 
+# ABSTRACT: run CPAN::Mini::FromList
+# PODNAME: minicpan-fromlist
+
 =head1 NAME
 
 minicpan-fromlist - uses CPAN::Mini::FromList to create or update a local mirror
@@ -33,7 +36,7 @@ use Pod::Usage;
 sub config_read {
 	my $filename = shift;
 
-	return unless -e $filename;
+	return unless -f $filename;
 
 	open my $config_file, '<', $filename
 		or die "couldn't open config file $filename: $!";
@@ -57,7 +60,7 @@ my %config;
 GetOptions(
            "h|help"     => sub { pod2usage(1); },
            "v|version"  => sub { print "minicpan-fromlist, powered by CPAN::Mini::FromList $CPAN::Mini::FromList::VERSION\n\n"; exit; },
-           "l|local=s"   => \$config{local_fromlist},
+           "l|local_fromlist=s"   => \$config{local_fromlist},
            "r|remote=s"  => \$config{remote},
            "d|dirmode=s" => \$config{dirmode},
            "q+" => \$config{quiet},
@@ -66,12 +69,12 @@ GetOptions(
            "generate_02" => \$config{generate_02},
           ) or pod2usage(2);
 
-pod2usage(2) unless $config{local} and $config{remote};
+pod2usage(2) unless $config{local_formlist} and $config{remote};
 
 $|++;
 $config{dirmode} &&= oct($config{dirmode});
 
-CPAN::Mini::FromList->delete_02packages($local);
+CPAN::Mini::FromList->delete_02packages($config->{local_fromlist});
 
 CPAN::Mini::FromList->update_mirror(
     remote  => $config{remote},
