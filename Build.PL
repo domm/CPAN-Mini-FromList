@@ -15,6 +15,15 @@ my $builder = Module::Build->new(
         'Test::More' => 0,
     },
     add_to_cleanup      => [ 'CPAN-Mini-FromList-*' ],
+    meta_add=>{
+        resources=>{
+            repository=>{
+                type=>'git',
+                url=>'git://github.com/domm/CPAN-Mini-FromList.git',
+                web=>'https://github.com/domm/CPAN-Mini-FromList',
+            },
+        },
+    },
 );
 
 $builder->create_build_script();
