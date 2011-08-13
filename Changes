@@ -1,0 +1,11 @@
+Revision history for CPAN-Mini-FromList
+
+0.02	Wed Apr  9 10:25:55 CEST 2008
+    - fiddled with docs
+    - added prereq to Build.PL
+    - imported into svn
+    
+
+0.01   Sat Apr  5 13:52:14 CEST 2008
+    - first release, live from Oslo QA Hackathon
+
