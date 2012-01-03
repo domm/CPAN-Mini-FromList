@@ -74,11 +74,11 @@ pod2usage(2) unless $config{local_formlist} and $config{remote};
 $|++;
 $config{dirmode} &&= oct($config{dirmode});
 
-CPAN::Mini::FromList->delete_02packages($config->{local_fromlist});
+CPAN::Mini::FromList->delete_02packages($config{local_fromlist});
 
 CPAN::Mini::FromList->update_mirror(
     remote  => $config{remote},
-    local   => $config{local_fromlist}
+    local   => $config{local_fromlist},
     trace   => (not $config{quiet}),
     dirmode => $config{dirmode},
     skip_perl      => 1,
@@ -89,7 +89,7 @@ CPAN::Mini::FromList->update_mirror(
     list    => \@ARGV,
 );
 
-CPAN::Mini::FromList->generate_fake_02packages($local);
+CPAN::Mini::FromList->generate_fake_02packages($config{local_fromlist});
 
 
 =head1 CONFIGURATION FILE
